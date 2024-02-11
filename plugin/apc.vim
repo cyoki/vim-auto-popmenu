@@ -111,12 +111,12 @@ function! s:apc_enable()
 	augroup END
 	let b:apc_init_autocmd = 1
 	if g:apc_enable_tab
-		inoremap <silent><buffer><expr> <tab>
+		inoremap <silent><buffer><expr> <c-n>
 					\ pumvisible()? "\<c-n>" :
-					\ <SID>check_back_space() ? "\<tab>" : 
+					\ <SID>check_back_space() ? "\<c-n>" : 
 					\ get(b:, 'apc_trigger', g:apc_trigger)
-		inoremap <silent><buffer><expr> <s-tab>
-					\ pumvisible()? "\<c-p>" : "\<s-tab>"
+		inoremap <silent><buffer><expr> <c-p>
+					\ pumvisible()? "\<c-p>" : "\<c-p>"
 		let b:apc_init_tab = 1
 	endif
 	if get(g:, 'apc_cr_confirm', 0) == 0
@@ -142,8 +142,8 @@ function! s:apc_disable()
 		augroup END
 	endif
 	if get(b:, 'apc_init_tab', 0)
-		silent! iunmap <buffer><expr> <tab>
-		silent! iunmap <buffer><expr> <s-tab>
+		silent! iunmap <buffer><expr> <c-n>
+		silent! iunmap <buffer><expr> <c-p>
 	endif
 	if get(b:, 'apc_init_bs', 0)
 		silent! iunmap <buffer><expr> <bs>
